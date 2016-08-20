@@ -38,7 +38,8 @@ public class LoginForm {
         User user = User.authenticate(email, password);
         if (user == null){
             errors.add(new ValidationError("message", "Invalid Email" ));
-            errors.add(new ValidationError("error", "true"))
+            errors.add(new ValidationError("error", "true"));
         }
+        return errors;
     }
 }
