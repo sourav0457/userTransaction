@@ -19,10 +19,10 @@ public class User extends Model{
     public String password;
 
     @OneToMany(mappedBy = "sender")
-    public List<ConnectionRequest> ConnectionRequestsSent;
+    public List<ConnectionRequest> connectionRequestsSent;
 
     @OneToMany(mappedBy = "receiver")
-    public List<ConnectionRequest> ConnectionRequestsReceived;
+    public List<ConnectionRequest> connectionRequestsReceived;
 
     @OneToOne
     public Profile profile;
@@ -36,7 +36,7 @@ public class User extends Model{
                     @JoinColumn(name = "connection_id")
             }
     )
-    public List<User> Connections;
+    public List<User> connections;
 
     public static User authenticate(String email, String password)
     {
