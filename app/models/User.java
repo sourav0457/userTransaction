@@ -1,56 +1,25 @@
 package models;
 
 import com.avaje.ebean.Model;
-import org.mindrot.jbcrypt.BCrypt;
-
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by lubuntu on 8/20/16.
- */
+
 @Entity
 public class User extends Model{
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO )
+    @GeneratedValue
     public Long id;
-    public String email;
-    public String password;
+    public String name;
+    public String phoneNumber;
+    public String address;
 
-    @OneToMany(mappedBy = "sender")
-    public List<ConnectionRequest> connectionRequestsSent;
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    public List<Transaction> transactionList = new ArrayList<Transaction>();
 
-    @OneToMany(mappedBy = "receiver")
-    public List<ConnectionRequest> connectionRequestsReceived;
 
-    @OneToOne
-    public Profile profile;
 
-    @ManyToMany
-    @JoinTable(name = "user_connections",
-            joinColumns = {
-                    @JoinColumn(name = "user_id")
-            },
-            inverseJoinColumns = {
-                    @JoinColumn(name = "connection_id")
-            }
-    )
-    public List<User> connections;
 
-    public static User authenticate(String email, String password)
-    {
-        User user = User.find.where().eq("email",email).findUnique();
-        if(user != null && BCrypt.checkpw(password, user.password)) {
-            return user;
-        }
-        return null;
-    }
-
-    public static Finder<Long, User> find = new Finder<Long, User>(User.class);
-
-    public User(String email,String password) {
-        this.email = email;
-        this.password = BCrypt.hashpw(password, BCrypt.gensalt());
-    }
 }
