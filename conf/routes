@@ -3,7 +3,11 @@
 # ~~~~
 
 # Map static resources from the /public folder to the /assets URL path
-POST     /maxAmount                 controllers.TransactionController.getMaxAmount(fromDate: Date,toDate: Date,userId: Long)
-POST     /minAmount                 controllers.TransactionController.getMinAmount(fromDate: Date,toDate: Date,userId: Long)
-GET      /maxBalance/:userID        controllers.UserController.findMaxBalance(userId: Long)
+
+#POST     /maxAmount                 controllers.TransactionController.getMaxAmount(fromDate: Date, toDate: Date, userId: Long)
+#POST     /minAmount                 controllers.TransactionController.getMinAmount(fromDate: Date, toDate: Date, userId: Long)
+GET      /maxBalance/:userId        controllers.UserController.findMaxBalance(userId: Long)
 POST     /moreThanX/                controllers.UserController.findUserWithMoreThanXAmount()
+
+GET     /get/users                  controllers.UserController.getUsers()
+GET     /get/user/:userId           controllers.UserController.getUser(userId: Long)

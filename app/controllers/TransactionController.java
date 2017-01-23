@@ -12,10 +12,10 @@ import java.util.Date;
 public class TransactionController extends Controller {
 
     public Result getMaxAmount(Date fromDate, Date toDate, Long userId) {
-
+        return ok();
     }
 
     public Result getMinAmount(Date fromDate, Date toDate, Long userId) {
-
+        return ok();
     }
 }

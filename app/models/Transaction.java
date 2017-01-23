@@ -15,7 +15,7 @@ import java.util.Date;
  */
 
 @Entity
-public class Transaction extends Model{
+public class Transaction extends Model {
 
     @Id
     @GeneratedValue
@@ -23,7 +23,7 @@ public class Transaction extends Model{
     public Date date;
     public Double amount;
 
-    @ManyToOne
-    public User user;
+   /* @ManyToOne
+    public User user;*/
 
 }
