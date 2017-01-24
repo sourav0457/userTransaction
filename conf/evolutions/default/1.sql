@@ -4,23 +4,23 @@
 # --- !Ups
 
 create table transaction (
-  id                        bigint auto_increment not null,
-  ddate                     datetime(6),
+  transactionid             bigint auto_increment not null,
+  date                      date,
   amount                    double,
-  user_id                   bigint,
-  constraint pk_transaction primary key (id))
+  user_userid               bigint,
+  constraint pk_transaction primary key (transactionid))
 ;
 
 create table user (
-  id                        bigint auto_increment not null,
+  userid                    bigint auto_increment not null,
   name                      varchar(255),
   phone_number              varchar(255),
   address                   varchar(255),
-  constraint pk_user primary key (id))
+  constraint pk_user primary key (userid))
 ;
 
-alter table transaction add constraint fk_transaction_user_1 foreign key (user_id) references user (id) on delete restrict on update restrict;
-create index ix_transaction_user_1 on transaction (user_id);
+alter table transaction add constraint fk_transaction_user_1 foreign key (user_userid) references user (userid) on delete restrict on update restrict;
+create index ix_transaction_user_1 on transaction (user_userid);
 
 
 

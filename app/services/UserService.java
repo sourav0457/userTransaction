@@ -16,14 +16,12 @@ public class UserService {
     @Inject Transaction transaction;
 
     public String getAllUsers() throws JsonProcessingException {
-        return objectMapper.writeValueAsString(User.findu.all());
+        return objectMapper.writeValueAsString(User.find.all());
     }
 
     public String getUserByuserId(Long userId) throws JsonProcessingException {
-        return objectMapper.writeValueAsString(User.findu.byId(userId));
+        return objectMapper.writeValueAsString(User.find.byId(userId));
     }
 
-    public String moreThanX(Long x) throws JsonProcessingException {
-        return objectMapper.writeValueAsString(Transaction.findt.select("id, amount").where().gt(transaction.amount.toString(), x));
-    }
+
 }

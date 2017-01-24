@@ -15,13 +15,13 @@ public class UserController extends Controller {
 
     @Inject UserService userService;
 
+    public Result index() { return ok();}
+
     public Result findMaxBalance(Long userId){
         return ok();
     }
 
-    public Result findUserWithMoreThanXAmount(Long x) throws JsonProcessingException {
-        return ok(userService.moreThanX(x));
-    }
+
 
     public Result getUsers() throws JsonProcessingException {
         return ok(userService.getAllUsers());

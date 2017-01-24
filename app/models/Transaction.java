@@ -10,7 +10,11 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.*;
 import javax.validation.Constraint;
+import java.time.LocalDate;
 import java.util.Date;
+import java.util.List;
+import java.util.Set;
+
 
 /**
  * Created by SOURAV SAMANTA on 22-01-2017.
@@ -21,20 +25,16 @@ public class Transaction extends Model {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id")
+    @Column(name = "transactionid")
     public Long id;
 
-    @Formats.DateTime(pattern = "dd-MM-yyyy")
-    public static Date ddate;
+    public LocalDate date;
 
     @Constraints.Required
     public Double amount;
 
     @ManyToOne
-    @JoinTable(name="USER_TRANSACTION",
-            joinColumns=@JoinColumn(name="uid",referencedColumnName = "userid"),
-            inverseJoinColumns = @JoinColumn(name="tid", referencedColumnName="id"))
     public User user;
 
-    public static Finder<Long, Transaction> findt = new Finder<Long, Transaction>(Transaction.class);
+    public static Finder<Long, Transaction> find = new Finder<Long, Transaction>(Transaction.class);
 }

@@ -6,6 +6,7 @@ import play.data.validation.Constraints;
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 public class User extends Model {
@@ -22,8 +23,5 @@ public class User extends Model {
     public String phoneNumber;
     public String address;
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-    public List<Transaction> transactionList = new ArrayList<Transaction>();
-
-    public static Finder<Long, User> findu = new Finder<Long, User>(User.class);
+    public static Finder<Long, User> find = new Finder<Long, User>(User.class);
 }

@@ -2,6 +2,7 @@ package controllers;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.google.inject.Inject;
+import models.Transaction;
 import play.mvc.Controller;
 import play.mvc.Result;
 import services.TransactionService;
@@ -22,5 +23,9 @@ public class TransactionController extends Controller {
 
     public Result getMinAmount(Date fromDate, Date toDate, Long userId) {
         return ok();
+    }
+
+    public Result findUserWithMoreThanXAmount(Long x) throws JsonProcessingException {
+        return ok(transactionService.moreThanX(x));
     }
 }
