@@ -1,7 +1,10 @@
 package controllers;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.google.inject.Inject;
 import play.mvc.Controller;
 import play.mvc.Result;
+import services.TransactionService;
 
 import java.util.Date;
 
@@ -11,8 +14,10 @@ import java.util.Date;
  */
 public class TransactionController extends Controller {
 
-    public Result getMaxAmount(Date fromDate, Date toDate, Long userId) {
-        return ok();
+    @Inject TransactionService transactionService;
+
+    public Result getMaxAmount(Date fromDate, Date toDate, Long userId) throws JsonProcessingException {
+        return ok(transactionService.getMaxAmount(fromDate, toDate, userId));
     }
 
     public Result getMinAmount(Date fromDate, Date toDate, Long userId) {

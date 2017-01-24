@@ -7,7 +7,7 @@
 #POST     /maxAmount                 controllers.TransactionController.getMaxAmount(fromDate: Date, toDate: Date, userId: Long)
 #POST     /minAmount                 controllers.TransactionController.getMinAmount(fromDate: Date, toDate: Date, userId: Long)
 GET      /maxBalance/:userId        controllers.UserController.findMaxBalance(userId: Long)
-POST     /moreThanX/                controllers.UserController.findUserWithMoreThanXAmount()
+POST     /moreThanX/:x                controllers.UserController.findUserWithMoreThanXAmount(x: Long)
 
 GET     /get/users                  controllers.UserController.getUsers()
 GET     /get/user/:userId           controllers.UserController.getUser(userId: Long)

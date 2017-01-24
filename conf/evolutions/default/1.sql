@@ -5,8 +5,9 @@
 
 create table transaction (
   id                        bigint auto_increment not null,
-  date                      datetime(6),
+  ddate                     datetime(6),
   amount                    double,
+  user_id                   bigint,
   constraint pk_transaction primary key (id))
 ;
 
@@ -18,6 +19,8 @@ create table user (
   constraint pk_user primary key (id))
 ;
 
+alter table transaction add constraint fk_transaction_user_1 foreign key (user_id) references user (id) on delete restrict on update restrict;
+create index ix_transaction_user_1 on transaction (user_id);
 
 
 

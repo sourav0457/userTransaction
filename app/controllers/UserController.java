@@ -19,8 +19,8 @@ public class UserController extends Controller {
         return ok();
     }
 
-    public Result findUserWithMoreThanXAmount(){
-        return ok();
+    public Result findUserWithMoreThanXAmount(Long x) throws JsonProcessingException {
+        return ok(userService.moreThanX(x));
     }
 
     public Result getUsers() throws JsonProcessingException {
