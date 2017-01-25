@@ -6,7 +6,13 @@ import models.Transaction;
 import models.User;
 
 import javax.inject.Inject;
+import java.time.LocalDate;
 import java.util.Date;
+import java.util.Map;
+
+import static com.avaje.ebean.Expr.between;
+import static com.avaje.ebean.Expr.eq;
+import static play.mvc.Controller.request;
 
 /**
  * Created by SOURAV SAMANTA on 23-01-2017.
@@ -15,9 +21,18 @@ public class TransactionService {
     @Inject
     ObjectMapper objectMapper;
     String result = "";
-    public String getMaxAmount(Date fromDate, Date toDate, Long userId) throws JsonProcessingException {
-        return objectMapper.writeValueAsString(Transaction.find.where().between("date",fromDate,toDate).eq("userid",userId));
-        // TODO: FINISH THIS FUNCTION
+    public String getMaxAmount(LocalDate fromDate, LocalDate toDate, Long userId) throws JsonProcessingException {
+
+        return objectMapper.writeValueAsString(Transaction.find.where().and(between("date", fromDate, toDate),eq("user_userid",userId)).orderBy("amount desc").setMaxRows(1).findList());
+
+
+    }
+
+    public String getMinAmount(LocalDate fromDate, LocalDate toDate, Long userId) throws JsonProcessingException {
+
+        return objectMapper.writeValueAsString(Transaction.find.where().and(between("date", fromDate, toDate),eq("user_userid",userId)).orderBy("amount asc").setMaxRows(1).findList());
+
+
     }
 
     public String moreThanX(Long x) throws JsonProcessingException {
